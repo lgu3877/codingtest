@@ -9,7 +9,8 @@ class Solve<N>{
 		int[] condition = Stream.of(conditions.split(" ")).mapToInt(Integer::parseInt).toArray();
 		int[] arrs = Stream.of(arr.split(" ")).mapToInt(Integer::parseInt).toArray();
 		int[] ar = Arrays.stream(arrs).sorted().toArray();
-
+		
+		String ab[] ={"abc","sd"};
 		int count = 0;
 		count += condition[1] % (condition[2]+1);
 		
