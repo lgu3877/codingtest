@@ -1,0 +1,15 @@
+package codingtest.codeup100.defaultInOutPut10to27;
+
+import java.util.Scanner;
+
+public class Solution12 {
+
+	public static void main(String[] args) {
+		float x;
+		
+		Scanner sc = new Scanner(System.in);
+		x = sc.nextFloat();
+		System.out.printf("%f",x);
+	}
+
+}
