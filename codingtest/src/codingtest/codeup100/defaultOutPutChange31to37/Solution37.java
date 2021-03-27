@@ -2,15 +2,13 @@ package codingtest.codeup100.defaultOutPutChange31to37;
 
 import java.util.Scanner;
 
-public class Solution36 {
+public class Solution37 {
 
 	public static void main(String[] args) {
 		Scanner sc =new Scanner(System.in);
-		char x = sc.next().charAt(0);
+		int a = sc.nextInt();
+		System.out.println((char)a);
 		
-		int a = (int) x;
-		
-		System.out.println(a);
 	}
 
 }
