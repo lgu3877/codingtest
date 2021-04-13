@@ -15,9 +15,10 @@ class Solution {
     	
 
         for(int i=0; i < data.length; i++) {
-        	
         	int weatherTMP = 0;
         	int totalScore = 0;
+        	
+//        	Integer[] tmp = new Integer();
         	
         	for(int j=0; j < data[i].length; j++) {
         		
@@ -27,6 +28,7 @@ class Solution {
 	        			weatherTMP = data[i][j];
 	        			break;
 	        		case 1:
+//	        			list checkBadDay(weatherTMP, data[i][j]) ? "" ;
 	        			totalScore += convertWeatherToScore(weatherTMP, data[i][j]); 
 	        			break;
 	        		case 2: 
@@ -41,6 +43,20 @@ class Solution {
         
         
         return new int[] {1};
+    }
+    
+    private boolean checkBadDay(int weather, int rainSnow) {
+    	if(weather == 4 || rainSnow == 1)
+    		return false;
+    				
+    	return true;
+    }
+    
+    private boolean checkBadDay(int temperature) {
+    	if(temperature >= 30 || temperature <= 0)
+    		return false;
+    	
+    	return true;
     }
     
     
