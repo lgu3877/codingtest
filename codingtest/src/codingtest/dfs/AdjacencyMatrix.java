@@ -21,6 +21,9 @@ public class AdjacencyMatrix {
 			System.out.println();
 		}
 		
+		String s = "가나다";
+		System.out.println(s.indexOf(0, 1));
+		
 	}
 
 }
