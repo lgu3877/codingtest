@@ -8,7 +8,7 @@ class Node {
 	
 	public Node(int index, int distance) {
 		this.index = index;
-		this.distance = distance;
+		this.distance = distance; 
 	}
 	
 	public void show() {
