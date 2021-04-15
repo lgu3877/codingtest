@@ -7,26 +7,30 @@ class Test1 {
 		
 		Stack<Integer> stack = new Stack<Integer>();
 		int answer = 0;
-		stack.add(-1);
 		
 		for(int i=0; i< moves.length; i++) {
 			for(int j=0; j < board.length; j++) {
-				System.out.println(j);
 				if(board[j][moves[i]-1] != 0) {
 					int tmp = 0;
-					if(stack.isEmpty()==false)
+					
+					if(!stack.isEmpty())
 						tmp = stack.peek();
 					
 					stack.add(board[j][moves[i]-1]);
-					board[j][moves[i]-1] = 0;
 					
-					while(stack.isEmpty() == false && stack.peek() != tmp) {
+					if(stack.size() != 1 && tmp == board[j][moves[i]-1]) {
 						stack.pop();
 						stack.pop();
-						if(stack.isEmpty() == false)
-							tmp = stack.peek();
+						answer++;
 						answer++;
 					}
+					
+					
+					
+					board[j][moves[i]-1] = 0;
+					
+
+					
 					
 					break;
 				}
