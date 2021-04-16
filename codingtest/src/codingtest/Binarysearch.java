@@ -13,6 +13,10 @@ public class Binarysearch {
 		
 		int md = (start + end) / 2;
 		
+		System.out.println(md);
+		System.out.println(arr[md]);
+		System.out.println();
+		
 		if(arr[md] == target) {
 			return md;
 		} else if (arr[md] > target) {
@@ -36,7 +40,6 @@ public class Binarysearch {
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-
         // 이진 탐색 수행 결과 출력 
         int result = binarySearch(arr, target, 0, n - 1);
         if (result == -1) {
