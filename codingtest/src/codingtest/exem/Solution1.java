@@ -9,7 +9,7 @@ class Resolve1 {
 	public String solution(String word) {
 		char sortation;	// 문자인지 숫자인지 구분 시켜주는 변수 값
 		String answer = "";
-		
+		 
 		
 		Queue<Character> numberQueue = new LinkedList<Character>();
 		Queue<Character> stringQueue = new LinkedList<Character>();
