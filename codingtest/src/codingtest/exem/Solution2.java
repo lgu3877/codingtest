@@ -8,10 +8,9 @@ class Resolve2 {
 		
 		int answer = 0;
 		
-		for(String word : words) {
-			System.out.println(word + "결과 값 : " + includeWords(target, word));
+		for(String word : words) 
 			 answer = answer + includeWords(target, word);
-		}
+		
 			
 		return answer;
 		
@@ -25,10 +24,7 @@ class Resolve2 {
 				target = target.replace(alphabet, "");
 			else if(!target.contains(alphabet)) 
 				return 0;
-			
 		}
-		
-		
 		return 1;
 	}
 	
