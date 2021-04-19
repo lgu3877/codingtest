@@ -23,16 +23,16 @@ class Resolve7to1 {
 		
 		
 		// 1분당 손실되는 물량
-		int lossItemsPerMinute = (NEWPRODUCTS / 60) - (PERSONCAN * SLOTS / 70 );
+		float lossItemsPerMinute = ((float)NEWPRODUCTS / 60) - ((float)PERSONCAN * SLOTS / 70 );
 		
 		// 재시작되는데 소요되는 분
-		int lossMinutes = MAXPRODUCTS / lossItemsPerMinute;
+		float lossMinutes = MAXPRODUCTS / lossItemsPerMinute;
 		
 		// 재시작되는데 소요되는 시간
-		int lossHours = lossMinutes / 60;
+		int lossHours = (int)lossMinutes / 60;
 		
 		System.out.println("7-1번. 아래 두 가지 질의에 대한 답을 구하는 프로그래밍을 작성하세요.");
-		System.out.println("멈출 수 밖에 없는 물량이라면 그것은 운영을 시작한 후 언제가 될까? " + lossHours + "시간 이후에");
+		System.out.printf("멈출 수 밖에 없는 물량이라면 그것은 운영을 시작한 후 언제가 될까? %d시간 이후에 \n", lossHours );
 		
 		
 		
