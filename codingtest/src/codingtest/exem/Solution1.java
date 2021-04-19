@@ -24,9 +24,13 @@ class Resolve1 {
 				stringQueue.add(sortation);
 		}
 		
+		
+		if(!determineChange(numberQueue.size(), stringQueue.size())) return "";
+		
+		
+		
 		answer = mixWord(numberQueue, stringQueue);
 		
-		if(!determineChange(answer)) return "";
 		
 		answer = answer.replace("null", "");
 		
@@ -53,8 +57,15 @@ class Resolve1 {
 		
 		while(!numberQueue.isEmpty() || !stringQueue.isEmpty()) {
 			
-			answer += stringQueue.poll();
-			answer += numberQueue.poll();
+			if(stringQueue.size() >= numberQueue.size()) {
+				answer += stringQueue.poll();
+				answer += numberQueue.poll();
+			}
+			else {
+				answer += numberQueue.poll();
+				answer += stringQueue.poll();
+				
+			}
 			
 		}
 		
@@ -65,14 +76,9 @@ class Resolve1 {
 	// 변경가능한지 구별해주는 함수 
  	// 변경 가능하면 true
 	// 변경 불가하면 false
-	private boolean determineChange(String answer) {
-		int lineCnt = 0;
-		int fromIndex = -1;
+	private boolean determineChange(int numberSize, int stringSize) {
 		
-		while ((fromIndex = answer.indexOf("null", fromIndex + 1)) >= 0) 
-		    lineCnt++;
-		
-		return lineCnt <= 2 ? true : false;
+		return Math.abs(numberSize - stringSize) < 2 ? true : false;
 		
 	}
 }
@@ -87,7 +93,7 @@ public class Solution1 {
 		String result1 = resolve.solution("a0b1c2");
 		String result2 = resolve.solution("covid2019");
 		String result3 = resolve.solution("exem");
-		String result4 = resolve.solution("month12");
+		String result4 = resolve.solution("month1234567");
 		
 		System.out.printf("문자열 재구성하기 결과1 => %s \n\n",  result1);
 		System.out.printf("문자열 재구성하기 결과2 => %s \n\n",  result2);
