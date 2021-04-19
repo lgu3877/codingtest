@@ -51,23 +51,31 @@ class Resolve1 {
 	
 	// 문자열을 섞어주는 함수
 	private String mixWord(Queue<Character> numberQueue, Queue<Character> stringQueue) {
+		return  ((stringQueue.size() >= numberQueue.size()) ? 
+								stringFirst(numberQueue, stringQueue) : numberFirst(numberQueue, stringQueue)).replace("null", "");
 		
+	}
+	
+	// 문자 먼저 일 때
+	private String stringFirst(Queue<Character> numberQueue, Queue<Character> stringQueue) {
 		String answer = "";
-		
 		while(!numberQueue.isEmpty() || !stringQueue.isEmpty()) {
-			
-			if(stringQueue.size() >= numberQueue.size()) {
 				answer += stringQueue.poll();
 				answer += numberQueue.poll();
-			}
-			else {
-				answer += numberQueue.poll();
-				answer += stringQueue.poll();
-			}
-			
 		}
 		
-		return  answer.replace("null", "");
+		return answer;
+	}
+	
+	// 숫자 먼저 일 때
+	private String numberFirst(Queue<Character> numberQueue, Queue<Character> stringQueue) {
+		String answer = "";
+		while(!numberQueue.isEmpty() || !stringQueue.isEmpty()) {
+				answer += numberQueue.poll();
+				answer += stringQueue.poll();
+		}
+		
+		return answer;
 	}
 	
 	
