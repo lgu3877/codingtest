@@ -32,10 +32,9 @@ class Resolve1 {
 		answer = mixWord(numberQueue, stringQueue);
 		
 		
-		answer = answer.replace("null", "");
-		
 		return answer;
 	}
+	
 	
 	// 숫자 = true
 	// 소문자 = false
@@ -64,12 +63,11 @@ class Resolve1 {
 			else {
 				answer += numberQueue.poll();
 				answer += stringQueue.poll();
-				
 			}
 			
 		}
 		
-		return answer;
+		return  answer.replace("null", "");
 	}
 	
 	
@@ -93,7 +91,7 @@ public class Solution1 {
 		String result1 = resolve.solution("a0b1c2");
 		String result2 = resolve.solution("covid2019");
 		String result3 = resolve.solution("exem");
-		String result4 = resolve.solution("month1234567");
+		String result4 = resolve.solution("month123456");
 		
 		System.out.printf("문자열 재구성하기 결과1 => %s \n\n",  result1);
 		System.out.printf("문자열 재구성하기 결과2 => %s \n\n",  result2);
