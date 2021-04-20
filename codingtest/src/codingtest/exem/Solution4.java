@@ -6,41 +6,30 @@ class Resolve4 {
 		
 		int result = 0;
 		
-		int leftSum = leftDiagonalLineSum(matrix);
+		int diagonalSum = leftDiagonalLineSum(matrix);
 		
-		int rightSum = rightDiagonalLineSum(matrix);
 		
 		int oddSub = oddDetermine(matrix);
 		
 		
-		result = leftSum + rightSum - oddSub;
-		
+		result = diagonalSum - oddSub;
 		return result;
 		
 	}
 	
-	// 왼쪽 위에서 오른쪽 아래로 향하는 대각선 합
+	// 대각선 합
 	private int leftDiagonalLineSum(int[][] matrix) {
 		int result = 0;
 		
 		for(int i = 0; i < matrix.length; i++) {
 			result += matrix[i][i];
+			result += matrix[i][matrix.length - 1 - i];
 		}
 		
 		return result;
 		
 	}
 	
-	// 오른쪽 위에서 왼쪽 아래로 향하는 대각선 합
-	private int rightDiagonalLineSum(int [][] matrix) {
-		int result = 0;
-		
-		for(int i = 0; i < matrix.length; i++) {
-			result += matrix[i][matrix.length - 1 - i];
-		}
-		
-		return result;
-	}
 	
 	// 홀수 일 경우에 겹치는 숫자 한 번만 연산
 	private int oddDetermine(int[][] matrix) {
