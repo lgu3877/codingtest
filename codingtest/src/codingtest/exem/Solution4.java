@@ -6,7 +6,7 @@ class Resolve4 {
 		
 		int result = 0;
 		
-		int diagonalSum = leftDiagonalLineSum(matrix);
+		int diagonalSum = diagonalLineSum(matrix);
 		
 		
 		int oddSub = oddDetermine(matrix);
@@ -18,7 +18,7 @@ class Resolve4 {
 	}
 	
 	// 대각선 합
-	private int leftDiagonalLineSum(int[][] matrix) {
+	private int diagonalLineSum(int[][] matrix) {
 		int result = 0;
 		
 		for(int i = 0; i < matrix.length; i++) {
