@@ -25,17 +25,9 @@ class Parcel {
 		products += NEWPRODUCTS;
 	}
 	
-	
-	
-	private void allotProducts() {
-		for (Slot area : this.slotArray)
-			products -= area.LIMITPRODUCTS;
-	}
-	
 	public void afterAnHour(int minute) {
 		if(minute % 60 == 0) {
 			arriveNewProducts();
-			allotProducts();
 		}
 	}
 }
@@ -64,10 +56,8 @@ class Slot extends Parcel {
 
 class Person extends Slot{
 	
-	final int WORKLOOPMINUTE = 25;
-	final int THROUGHPUT = 25;
-	
-//	public 
+	final int WORKLOOPMINUTE = 25 + 10;
+	final int THROUGHPUT = (25 * 6);
 	
 }
 
@@ -96,26 +86,30 @@ class Resolve7 implements Runnable{
 		
 			try {
 				while(Parcel.products <= 10000) {
-					Thread.sleep(50);
-					System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
+					Thread.sleep(1);
 					minute++;
-					parcel.afterAnHour(minute);
+					System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
 					
-					if(minute % parcel.slotArray.get(0).person.WORKLOOPMINUTE == 0) {
+					if(minute == 25 || (minute - 25) % parcel.slotArray.get(0).person.WORKLOOPMINUTE == 0) {
 						allotProducts(parcel.slotArray);
-						
 						System.out.println("==============트럭 재충전 시간 시작==============");
 						
 						for (int i = 0; i < parcel.slotArray.get(0).vehicle.RECHARGEMINUTE; i++) {
-							Thread.sleep(50);
-							System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
+							Thread.sleep(1);
 							minute++;
+							System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
+							
 							parcel.afterAnHour(minute);
 						}
 						
 						System.out.println("==============트럭 재충전 시간 종료==============");
 					}
-						
+					
+					
+					
+					parcel.afterAnHour(minute);
+					
+					
 				}
 				
 			} catch (InterruptedException e) {
