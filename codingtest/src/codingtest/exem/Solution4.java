@@ -45,6 +45,7 @@ public class Solution4 {
 		int result1 = resolve.solution(new int[][] {{1,2,3}, {4,5,6}, {7,8,9}});
 		int result2 = resolve.solution(new int[][] {{1,1,1,2}, {1,1,1,1}, {1,1,1,1}, {1,1,1,2}});
 
+
 		System.out.printf("대각선 합 구하기 결과1 => [ %d ]\n", result1);
 
 		System.out.printf("대각선 합 구하기 결과2 => [ %d ]", result2);
