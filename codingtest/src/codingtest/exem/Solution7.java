@@ -12,10 +12,10 @@ class Parcel {
 
 	List<Slot> slotArray;
 	
-	int products;
+	protected static int products;
 	
 	public Parcel(int products, List<Slot> slotArray) {
-		this.products = products;
+		Parcel.products = products;
 		this.slotArray = slotArray;
 	}
 	public Parcel() {}
@@ -29,7 +29,7 @@ class Parcel {
 	
 	private void allotProducts() {
 		for (Slot area : this.slotArray)
-			area.getProducts();
+			products -= area.LIMITPRODUCTS;
 	}
 	
 	public void afterAnHour(int minute) {
@@ -38,28 +38,42 @@ class Parcel {
 			allotProducts();
 		}
 	}
-	
 }
 
 class Slot extends Parcel {
+	Person person;
+	Vehicle vehicle;
 	
-	// 슬롯 최대 적재량
+	public Slot(Person person, Vehicle vehicle) {
+		this.person = person;
+		this.vehicle = vehicle;
+	}
+	
+	public Slot() {}
 	final int LIMITPRODUCTS = 200;
 	
 	
-	// 부모 적재량을 가져올 때 불러오는 함수
+	
 	public void getProducts() {
-		super.products -= LIMITPRODUCTS;
-		System.out.println(super.products);
+		Parcel.products -= person.THROUGHPUT;
+		System.out.printf("노동자들이 %d만큼 물량을 옮겼습니다...\n현재 물량 [ %d ]\n ", person.THROUGHPUT, Parcel.products);
 	}
+	
 	
 }
 
-class People extends Slot{
-	final int PERSONCAN = (25 * 6) * 2;  
+class Person extends Slot{
+	
+	final int WORKLOOPMINUTE = 25;
+	final int THROUGHPUT = 25;
+	
+//	public 
+	
 }
 
 class Vehicle extends Slot{
+	
+	final int RECHARGEMINUTE = 10;
 	
 }
 
@@ -68,31 +82,53 @@ class Vehicle extends Slot{
 class Resolve7 implements Runnable{
 	
 	Parcel parcel = new Parcel(2000, new ArrayList<Slot>() {{
-		add(new Slot());
-		add(new Slot());
-		add(new Slot());
-		add(new Slot());
-		add(new Slot());
-		add(new Slot());
+		add(new Slot(new Person(), new Vehicle()));
+		add(new Slot(new Person(), new Vehicle()));
+		add(new Slot(new Person(), new Vehicle()));
+		add(new Slot(new Person(), new Vehicle()));
+		add(new Slot(new Person(), new Vehicle()));
+		add(new Slot(new Person(), new Vehicle()));
 	}});
 	
 	
 	public void run () {
 		int minute = 0;
 		
-		
 			try {
-				while(parcel.products < 10000) {
+				while(Parcel.products <= 10000) {
 					Thread.sleep(50);
-					System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, parcel.products);
+					System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
 					minute++;
 					parcel.afterAnHour(minute);
+					
+					if(minute % parcel.slotArray.get(0).person.WORKLOOPMINUTE == 0) {
+						allotProducts(parcel.slotArray);
+						
+						System.out.println("==============트럭 재충전 시간 시작==============");
+						
+						for (int i = 0; i < parcel.slotArray.get(0).vehicle.RECHARGEMINUTE; i++) {
+							Thread.sleep(50);
+							System.out.printf("%d시간 %d분 \n현재 물류량 : %d\n\n",minute / 60, minute % 60, Parcel.products);
+							minute++;
+							parcel.afterAnHour(minute);
+						}
+						
+						System.out.println("==============트럭 재충전 시간 종료==============");
+					}
+						
 				}
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 	}
+	
+	// 슬롯들에 컨테이너 벨트 상품을 전달하는 함수
+	private void allotProducts(List<Slot> slotArray) {
+		for (Slot area : slotArray)
+			area.getProducts();
+	}
+	
 	
 	public void solution(){
 	}

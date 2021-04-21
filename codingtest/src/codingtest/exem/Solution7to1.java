@@ -12,6 +12,7 @@ class Resolve7to1 {
 		
 		final int PERSONCAN = (25 * 6) * 2;  
 		
+		
 		// (25 * 2) + 20 처리되는데 걸리는  시간 (분 단위)  (70분)
 		final int ANHOUR = (25 * 2) + 20;
 		
@@ -47,7 +48,6 @@ public class Solution7to1 {
 		System.out.println("처리 가능한 물류인가 ? " + bl);
 		
 		
-	
 		/*	Q. 7-2번 멈추지 않고 운영할 수 있도록 알고리즘이나 해결책을 제시하세요.
 		 * 
 		 * 
