@@ -2,7 +2,6 @@ package codingtest.dfs;
 
 import java.util.Arrays;
 
-// 단어 변환
 class Solution {
     public int solution(String begin, String target, String[] words) {
     	if(Arrays.stream(words).allMatch(result -> !result.equals(target))) return 0;
